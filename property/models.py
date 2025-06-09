@@ -64,3 +64,15 @@ class Report(models.Model):
 
     def __str__(self):
         return f'{self.apartment_complainer}, ({self.flat.address})'
+
+
+class Owner(models.Model):
+    name = models.CharField('ФИО владельца', max_length=200, blank=False, db_index=True)
+    phonenumber = models.CharField('Номер владельца', max_length=20, blank=False, db_index=True)
+    pure_phone = PhoneNumberField(verbose_name='Нормализованный номер владельца', null=True, blank=True,
+                                  db_index=True)
+    flats = models.ManyToManyField(Flat, blank=False, verbose_name='Квартиры в собственности', related_name='owners',
+                                   db_index=True)
+
+    def __str__(self):
+        return f'{self.name}'
