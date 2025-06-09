@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 # from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -52,3 +52,13 @@ class Flat(models.Model):
 
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
+
+
+class Report(models.Model):
+    apartment_complainer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Кто пожаловался', related_name='reports')
+    flat = models.ForeignKey(Flat, on_delete=models.CASCADE, verbose_name='Квартира, на которую пожаловались',
+                             related_name='reports')
+    text = models.TextField(verbose_name='Текст жалобы')
+
+    def __str__(self):
+        return f'{self.apartment_complainer}, ({self.flat.address})'
