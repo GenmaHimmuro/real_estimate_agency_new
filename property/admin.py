@@ -9,3 +9,4 @@ class AuthorAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at', ]
     list_display = ['address', 'price', 'new_building', 'construction_year', ]
     list_editable = ['new_building', ]
+    list_filter = ['new_building', 'rooms_number', 'has_balcony', ]
