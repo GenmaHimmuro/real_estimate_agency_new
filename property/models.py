@@ -66,7 +66,7 @@ class Flat(models.Model):
         User,
         verbose_name='Лайки квартир',
         blank=True,
-        related_name='liked_apartment'
+        related_name='liked_apartments'
     )
     owner_pure_phone = PhoneNumberField(
         verbose_name='Нормализованный номер владельца',
