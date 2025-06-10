@@ -10,7 +10,7 @@ def transfer_owners(apps, schema_editor):
     for flat in flats.iterator():
         if flat.owners_phonenumber:
             Owner.objects.get_or_create(name=flat.owner, pure_phone=flat.owner_pure_phone,
-                                        phonenumber=flat.owners_phonenumber)
+                                        phonenumber=flat.phonenumber)
 
 
 class Migration(migrations.Migration):
